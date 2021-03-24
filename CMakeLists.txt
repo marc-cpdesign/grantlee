@@ -28,7 +28,7 @@ if (BUILD_TESTS)
   enable_testing()
 endif()
 
-set(Grantlee_MODULE_DIR ${CMAKE_SOURCE_DIR}/cmake/modules)
+set(Grantlee_MODULE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 list(APPEND CMAKE_MODULE_PATH ${Grantlee_MODULE_DIR})
 
 include(GenerateExportHeader)
@@ -162,7 +162,7 @@ if (DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
   # Add support for a docs target
 
   # Available from http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen/libstdc++.tag
-  set(STLTAGFILE "${CMAKE_SOURCE_DIR}/scripts/libstdc++.tag=http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen")
+  set(STLTAGFILE "${CMAKE_CURRENT_SOURCE_DIR}/scripts/libstdc++.tag=http://gcc.gnu.org/onlinedocs/libstdc++/latest-doxygen")
   find_file(qtcore_tag_file
     qtcore.tags
     HINTS
@@ -185,7 +185,7 @@ if (DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
 
     # Available from http://steveire.com/libstdc++-longnames.tag
     # Also recommended: http://www.steveire.com/libstdc++-v3.qch
-    set(STLTAGFILE "${CMAKE_SOURCE_DIR}/scripts/libstdc++-longnames.tag=qthelp://org.gnu.libstdcxx/libstdc++-v3/")
+    set(STLTAGFILE "${CMAKE_CURRENT_SOURCE_DIR}/scripts/libstdc++-longnames.tag=qthelp://org.gnu.libstdcxx/libstdc++-v3/")
     set(QTTAGFILE "${qtcore_tag_file}=qthelp://org.qt-project.qtcore/qtcore/")
 
     set(TAGFILES "${QTTAGFILE} ${STLTAGFILE}")
@@ -256,7 +256,7 @@ if(LCOV_FOUND)
   )
 
   list(APPEND coverage_ARGS COMMAND ${CMAKE_COMMAND} -E remove_directory coverage)
-  list(APPEND coverage_ARGS COMMAND ${GENHTML_EXECUTABLE} -o coverage/ -s --demangle-cpp -f test_all.info --prefix ${CMAKE_SOURCE_DIR})
+  list(APPEND coverage_ARGS COMMAND ${GENHTML_EXECUTABLE} -o coverage/ -s --demangle-cpp -f test_all.info --prefix ${CMAKE_CURRENT_SOURCE_DIR})
 
   add_custom_target(coverage
     ${coverage_ARGS}
@@ -301,8 +301,8 @@ set(CPACK_PACKAGE_VERSION_PATCH ${Grantlee5_VERSION_PATCH})
 set(CPACK_PACKAGE_CONTACT "Stephen Kelly <steveire@gmail.com>")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "A set of frameworks for use with Qt")
 set(CPACK_GENERATOR "TGZ" )
-set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING.LIB")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYING.LIB")
 
 set(CPACK_COMPONENT_COMMON_DISPLAY_NAME "Grantlee Common files")
 set(CPACK_COMPONENT_TEMPLATES_DISPLAY_NAME "Grantlee String Templates")
