@@ -11,13 +11,13 @@ else()
 endif()
 
 ExternalProject_Add(books
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/books
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/books
   INSTALL_COMMAND ""
   CMAKE_ARGS
     -DCMAKE_PREFIX_PATH=${prefixPath}
 )
 ExternalProject_Add(codegen
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/codegen
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/codegen
   INSTALL_COMMAND ""
   CMAKE_ARGS
     -DCMAKE_PREFIX_PATH=${prefixPath}
@@ -25,7 +25,7 @@ ExternalProject_Add(codegen
 )
 
 ExternalProject_Add(contacts
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/contacts
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/contacts
   INSTALL_COMMAND ""
   CMAKE_ARGS
     -DCMAKE_PREFIX_PATH=${prefixPath}
@@ -33,7 +33,7 @@ ExternalProject_Add(contacts
 )
 
 ExternalProject_Add(htmlapps
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/htmlapps
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/htmlapps
   INSTALL_COMMAND ""
   CMAKE_ARGS
     -DCMAKE_PREFIX_PATH=${prefixPath}
@@ -41,7 +41,7 @@ ExternalProject_Add(htmlapps
 )
 
 ExternalProject_Add(textedit
-  SOURCE_DIR ${CMAKE_SOURCE_DIR}/textedit
+  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/textedit
   INSTALL_COMMAND ""
   CMAKE_ARGS
     -DCMAKE_PREFIX_PATH=${prefixPath}

@@ -41,17 +41,17 @@ endif()
 
 execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink "${PROJECT_SOURCE_DIR}/../../scripts" "${PROJECT_SOURCE_DIR}/scripts")
 
-set( LINGUIST_TS_ARGS COMMAND "${CMAKE_SOURCE_DIR}/scripts/extract_strings_linguist.py"
-  "${CMAKE_SOURCE_DIR}/themes/linguist/bashful/*.html"
-  "${CMAKE_SOURCE_DIR}/themes/linguist/sneezy/*.html"
-  "${CMAKE_SOURCE_DIR}/themes/linguist/sleepy/*.html"
+set( LINGUIST_TS_ARGS COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/scripts/extract_strings_linguist.py"
+  "${CMAKE_CURRENT_SOURCE_DIR}/themes/linguist/bashful/*.html"
+  "${CMAKE_CURRENT_SOURCE_DIR}/themes/linguist/sneezy/*.html"
+  "${CMAKE_CURRENT_SOURCE_DIR}/themes/linguist/sleepy/*.html"
   ">" "${CMAKE_BINARY_DIR}/output.cpp"
   COMMAND ${lupdate_exe} "${CMAKE_BINARY_DIR}/output.cpp" "-ts" )
 
 set (CONTACTS_LOCALES "fr_FR" "de_DE" )
 
 foreach(CONTACT_LOCALE ${CONTACTS_LOCALES})
-    list(APPEND LINGUIST_TS_ARGS "${CMAKE_SOURCE_DIR}/${CONTACT_LOCALE}.ts" )
+    list(APPEND LINGUIST_TS_ARGS "${CMAKE_CURRENT_SOURCE_DIR}/${CONTACT_LOCALE}.ts" )
 endforeach()
 
 add_custom_target(linguist_ts
@@ -60,7 +60,7 @@ add_custom_target(linguist_ts
 )
 
 foreach(CONTACT_LOCALE ${CONTACTS_LOCALES})
-    list(APPEND _LINGUIST_QM_ARGS COMMAND ${lrelease_exe} "${CMAKE_SOURCE_DIR}/${CONTACT_LOCALE}.ts" "-qm" "${CMAKE_BINARY_DIR}/contacts_${CONTACT_LOCALE}.qm" )
+    list(APPEND _LINGUIST_QM_ARGS COMMAND ${lrelease_exe} "${CMAKE_CURRENT_SOURCE_DIR}/${CONTACT_LOCALE}.ts" "-qm" "${CMAKE_BINARY_DIR}/contacts_${CONTACT_LOCALE}.qm" )
 endforeach()
 
 add_custom_target(linguist_qm
