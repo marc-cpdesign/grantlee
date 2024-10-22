@@ -116,19 +116,19 @@ endif()
 
 configure_file(
   "${Grantlee_MODULE_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}Config.cmake.in"
-  "${CMAKE_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}Config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}Config.cmake"
   @ONLY
 )
 
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file("${CMAKE_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}ConfigVersion.cmake"
+write_basic_package_version_file("${CMAKE_CURRENT_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}ConfigVersion.cmake"
   VERSION ${Grantlee5_VERSION}
   COMPATIBILITY AnyNewerVersion
 )
 
 install(FILES
-  "${CMAKE_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}Config.cmake"
-  "${CMAKE_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}ConfigVersion.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}Config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/Grantlee${Grantlee5_VERSION_MAJOR}ConfigVersion.cmake"
   DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
   COMPONENT Common
 )
@@ -171,7 +171,7 @@ if (DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
   set(QTTAGFILE "${qtcore_tag_file}=https://doc.qt.io/qt-5/")
 
   set(TAGFILES "${QTTAGFILE} ${STLTAGFILE}")
-  set(DOCS_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
+  set(DOCS_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
   configure_file(
     "${Grantlee_MODULE_DIR}/Doxyfile.in"
     "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
@@ -181,7 +181,7 @@ if (DOXYGEN_FOUND AND DOXYGEN_DOT_FOUND)
   # qttags.tag is too big to distribute with Grantlee. Get it
   # from http://api.kde.org/kdereview-api/kdereview.tar.gz for example.
   if(EXISTS ${qtcore_tag_file})
-    set(DOCS_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/qtdocs")
+    set(DOCS_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/qtdocs")
 
     # Available from http://steveire.com/libstdc++-longnames.tag
     # Also recommended: http://www.steveire.com/libstdc++-v3.qch
@@ -212,7 +212,7 @@ find_package(LCov)
 if(LCOV_FOUND)
   get_property(UNITTESTS GLOBAL PROPERTY TEST_COVERAGE)
 
-  set(coverageDir ${CMAKE_BINARY_DIR})
+  set(coverageDir ${CMAKE_CURRENT_BINARY_DIR})
   set(coverage_ARGS)
 
   foreach(_testpath ${UNITTESTS})
@@ -222,13 +222,13 @@ if(LCOV_FOUND)
 
     list(APPEND coverage_ARGS COMMAND ${_testpath})
     list(APPEND coverage_ARGS COMMAND ${LCOV_EXECUTABLE} -c -t ${_test} -d ${coverageDir} -o ${CMAKE_BINARY_DIR}/test_${_test}.info)
-    set(infoFiles ${infoFiles} -a ${CMAKE_BINARY_DIR}/test_${_test}.info)
+    set(infoFiles ${infoFiles} -a ${CMAKE_CURRENT_BINARY_DIR}/test_${_test}.info)
   endforeach()
 
   list(APPEND coverage_ARGS COMMAND ${LCOV_EXECUTABLE} ${infoFiles} -o test_all.info)
 
   # For an unknown reason lcov does not work with absolute paths such as ${CMAKE_BINARY_DIR}
-  file(RELATIVE_PATH relBinaryDir / ${CMAKE_BINARY_DIR})
+  file(RELATIVE_PATH relBinaryDir / ${CMAKE_CURRENT_BINARY_DIR})
 
   if (GRANTLEE_BUILD_WITH_QT6)
     find_package(Qt6Core REQUIRED)
