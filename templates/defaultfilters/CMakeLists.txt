@@ -7,6 +7,7 @@ add_library(grantlee_defaultfilters MODULE
   misc.cpp
   stringfilters.cpp
 )
+add_library(Grantlee5::defaultfilters ALIAS grantlee_defaultfilters)
 set_property(TARGET grantlee_defaultfilters PROPERTY
     EXPORT_NAME defaultfilters
 )

@@ -20,6 +20,8 @@ add_library(grantlee_defaulttags MODULE
   widthratio.cpp
   with.cpp
 )
+
+add_library(Grantlee5::defaulttags ALIAS grantlee_defaulttags)
 set_property(TARGET grantlee_defaulttags PROPERTY
   EXPORT_NAME defaulttags
 )

@@ -8,6 +8,7 @@ add_library(grantlee_i18ntags MODULE
   l10n_filesize.cpp
   with_locale.cpp
 )
+add_library(Grantlee5::i18ntags ALIAS grantlee_i18ntags)
 set_property(TARGET grantlee_i18ntags PROPERTY
   EXPORT_NAME i18ntags
 )

@@ -9,6 +9,7 @@ add_library(grantlee_loadertags MODULE
   extends.cpp
   include.cpp
 )
+add_library(Grantlee5::loadertags ALIAS grantlee_loadertags)
 set_property(TARGET grantlee_loadertags PROPERTY
   EXPORT_NAME loadertags
 )
